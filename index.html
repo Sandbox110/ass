@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en-US"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous">
+    <link REL="SHORTCUT ICON" HREF="images/logoweb.png">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min_1.css">
+    <title>Mr. Rosy Cheeks</title>
+  </head>
+  <body>
+    <div class="ant-container">
+      <div class="ant-row" id="top-row">
+        <img src="images/formiga.png" alt="Formigas">
+        <img src="images/formiga.png" alt="Formigas">
+      </div>
+      <div id="image-container">
+        <img src="images/bt-rght.png" alt="Formigas" class="vibrating-right">
+        <img src="images/bt-lft.png" alt="Formigas" class="vibrating-left">
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var hideTimeout;
+          var isMouseOver = false;
+          var vibratingRight = document.querySelector('.vibrating-right');
+          var vibratingLeft = document.querySelector('.vibrating-left');
+
+          function showImages() {
+            vibratingRight.style.bottom = "200px";
+            vibratingLeft.style.bottom = "200px";
+          }
+
+          function hideImages() {
+            vibratingRight.style.bottom = "-200px"; // Ajuste esse valor conforme necessário
+            vibratingLeft.style.bottom = "-200px"; // Ajuste esse valor conforme necessário
+          }
+          document.addEventListener('mousemove', function(e) {
+            if (e.clientY > window.innerHeight - 20) {
+              if (hideTimeout) clearTimeout(hideTimeout);
+              showImages();
+            }
+          });
+          [vibratingRight, vibratingLeft].forEach(element => {
+            element.addEventListener('mouseover', function() {
+              isMouseOver = true;
+              if (hideTimeout) clearTimeout(hideTimeout);
+            });
+            element.addEventListener('mouseout', function() {
+              isMouseOver = false;
+              hideTimeout = setTimeout(function() {
+                if (!isMouseOver) {
+                  hideImages();
+                }
+              }, 3000);
+            });
+          });
+        });
+      </script>
+      <div id="video-modal" class="video-modal">
+        <div class="video-container">
+          <span class="close-btn" onclick="closeVideo()">×</span>
+          <video id="video-player" controls="" autoplay="">
+            <source src="media/video.mp4" type="video/mp4"> Seu navegador não suporta o elemento de vídeo.
+          </video>
+        </div>
+      </div>
+      <div class="text01 blinking-text" > WHO IS MR. ROSY CHEEKS? </div>
+      <div class="text01" onclick="rotateImage()"> MR ASS ON TON </div>
+      <img src="images/retardaarc.png" id="rotating-image" class="hidden">
+      <div class="text_buy"><a href="https://app.ston.fi/swap?outputCurrency=EQCevwoLI8Xq2iLBkzph1nNNPD6kXvVEQP-0KrGN7y0NKhJN&chartVisible=false&ft=TON&tt=EQCevwoLI8Xq2iLBkzph1nNNPD6kXvVEQP-0KrGN7y0NKhJN">BUY NOW</a></div>
+      <div class="ant-row" id="bottom-row">
+        <img src="images/formiga.png" alt="Formigas">
+        <img src="images/formiga.png" alt="Formigas">
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script>
+      function openVideo() {
+        var modal = document.getElementById('video-modal');
+        var videoPlayer = document.getElementById('video-player');
+        modal.style.display = 'block';
+        videoPlayer.play();
+      }
+
+      function closeVideo() {
+        var modal = document.getElementById('video-modal');
+        var videoPlayer = document.getElementById('video-player');
+        modal.style.display = 'none';
+        videoPlayer.pause();
+      }
+    </script>
+    <script>
+      function rotateImage() {
+        var image = document.getElementById('rotating-image');
+        image.classList.remove('hidden');
+        image.classList.add('rotating');
+        setTimeout(function() {
+          image.classList.remove('rotating');
+          image.classList.add('slowing');
+        }, 3000); // A imagem girará por 3 segundos
+        setTimeout(function() {
+          image.classList.remove('slowing');
+          image.classList.add('hidden');
+        }, 6000); // A imagem levará 2 segundos para parar de girar, e então se esconderá após mais 1 segundo adicional
+      }
+    </script>
+    <script>
+      function toggleAudio() {
+        var audioPlayer = document.getElementById('audio-player');
+        var audioControlIcon = document.getElementById('audio-control-icon');
+        if (audioPlayer.paused) {
+          audioPlayer.play();
+          audioControlIcon.className = 'fas fa-pause audio-control';
+        } else {
+          audioPlayer.pause();
+          audioControlIcon.className = 'fas fa-play audio-control';
+        }
+      }
+    </script>
+    <audio id="audio-player" loop="" autoplay="">
+      <source src="media/music.mp3" type="audio/mpeg"> Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <div class="footer">
+      <p class="bottom"><a href="mailto:Cheekscoin@proton.me">Cheekscoin@proton.me</a></p>
+      <i id="audio-control-icon" class="fas fa-play audio-control" onclick="toggleAudio()"></i>
+      <button class="footer-button"><a href="https://t.me/CheeksCTO"><i class="fab fa-telegram" aria-hidden="true"></i> Telegram</a></button>
+      <button class="footer-button"><a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a></button>
+    </div>
+  
+</body></html>
